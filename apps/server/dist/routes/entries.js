@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const entriesController_1 = require("../controllers/entriesController");
+const validate_1 = require("../middleware/validate");
+const entryRouter = (0, express_1.Router)();
+entryRouter.get('/', entriesController_1.getEntries);
+entryRouter.post('/', (0, validate_1.validate)(entriesController_1.createEntrySchema), entriesController_1.createEntry);
+entryRouter.delete('/:id', entriesController_1.deleteEntry);
+exports.default = entryRouter;
